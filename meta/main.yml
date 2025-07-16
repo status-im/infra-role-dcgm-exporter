@@ -1,0 +1,14 @@
+galaxy_info:
+  author: Alexis <alexis@status.im>
+  description: Deploy and setup dgcm exporter for GPU metrics
+  company: IFT
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  dependencies:
+    - name: infra-role-consul-service
+      src: git+git@github.com:status-im/infra-role-consul-service.git
+      scm: git

@@ -1,0 +1,16 @@
+---
+- name:         Create Consul service definition
+  include_role: name=infra-role-consul-service
+  vars:
+    consul_config_name: '{{ dcgm_expo_service_name }}'
+    consul_services:
+      - name:     '{{ dcgm_expo_service_name }}-metrics'
+        id:       '{{ dcgm_expo_service_name }}-metrics'
+        tags:     ['metrics', 'gpu', 'nvidia']
+        port:     '{{ dcgm_expo_cont_port }}'
+        address:  '{{ ansible_local.wireguard.address }}'
+        checks:
+          - id: '{{ dcgm_expo_service_name }}-metrics-status'
+            name: 'dcgm_expo'
+            type: 'http'
+            http: 'http://localhost:{{ dcgm_expo_cont_port }}/'

@@ -1,0 +1,17 @@
+# vim: ft=yaml
+---
+services:
+  dcgm-exporter:
+    image: '{{ dcgm_expo_cont_image }}:{{ dcgm_expo_cont_tag }}'
+    container_name: '{{ dcgm_expo_cont_name }}'
+    ports:
+      - '{{ dcgm_expo_cont_port }}:{{ dcgm_expo_cont_port }}'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              driver: nvidia
+              count: 1
+    cap_add:
+    - SYS_ADMIN

@@ -1,0 +1,23 @@
+---
+- name: Create directory
+  file:
+    path:         '{{ dcgm_expo_service_path }}'
+    state:        directory
+    owner:        'root'
+    group:        'docker'
+
+- name: Create compose file
+  template:
+    src:          'docker-compose.yml.j2'
+    dest:         '{{ dcgm_expo_service_path }}/docker-compose.yml'
+    owner:        'root'
+    group:        'docker'
+    mode:         0640
+
+- name: Create containers
+  community.docker.docker_compose_v2:
+    project_src: '{{ dcgm_expo_service_path }}'
+    files:       '{{ dcgm_expo_service_path }}/docker-compose.yml'
+    state:       '{{ compose_state }}'
+    recreate:    '{{ compose_recreate }}'
+    pull:        '{{ compose_pull }}'

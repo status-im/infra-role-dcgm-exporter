@@ -1,0 +1,15 @@
+---
+dcgm_expo_service_name: 'dcgm-exporter'
+dcgm_expo_service_path: '/docker/{{ dcgm_expo_service_name }}'
+
+
+dcgm_expo_cont_name: '{{ dcgm_expo_service_name }}'
+dcgm_expo_cont_image: 'nvcr.io/nvidia/k8s/dcgm-exporter'
+dcgm_expo_cont_tag: '4.2.3-4.2.0-ubuntu22.04'
+dcgm_expo_cont_port: 9400
+
+
+# general container management
+compose_recreate: 'auto'
+compose_state: 'present'
+compose_pull: 'always'

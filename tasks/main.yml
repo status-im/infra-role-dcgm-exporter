@@ -1,0 +1,5 @@
+---
+- import_tasks: container.yml
+  tags: ['role::dcgm-exporter', 'role:dgcm-exporter:container']
+- import_tasks: consul.yml
+  tags: ['role::dcgm-exporter', 'role:dgcm-exporter:consul']
